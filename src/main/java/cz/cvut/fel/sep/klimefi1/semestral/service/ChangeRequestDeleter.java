@@ -12,13 +12,18 @@ import java.util.logging.Logger;
 @Service
 public class ChangeRequestDeleter {
 
-    @Autowired
-    private ChangeRequestRepository repository;
+    private final ChangeRequestRepository repository;
 
     private Logger logger = Logger.getGlobal();
 
+    @Autowired
+    public ChangeRequestDeleter(ChangeRequestRepository repository) {
+        this.repository = repository;
+    }
+
     /**
      * Deletes ChangeRequest with given id.
+     *
      * @param id
      * @return
      */

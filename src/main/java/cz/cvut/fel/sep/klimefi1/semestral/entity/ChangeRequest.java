@@ -14,7 +14,7 @@ public class ChangeRequest {
 
     private String note;
 
-    private Boolean pushedToApi;
+    private Boolean pushedToApi = false;
 
     public enum Type {
         ADD,
@@ -53,6 +53,7 @@ public class ChangeRequest {
         return clientId;
     }
 
+    @NotNull
     public Boolean getPushedToApi() {
         if (pushedToApi == null) {
             return false;

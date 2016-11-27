@@ -7,8 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface ChangeRequestRepository extends CrudRepository<ChangeRequest, Long> {
 
     /**
-     * Finds all ChangeRequests which have not been uploaded yet.
+     * Finds all ChangeRequests with pushedToApi parameter same as the given one.
      * @return
      */
-    Iterable<ChangeRequest> findNonUploaded();
+    Iterable<ChangeRequest> findByPushedToApi(Boolean pushedToApi);
 }

@@ -13,10 +13,14 @@ import java.util.logging.Logger;
 @Service
 public class ChangeRequestCreator {
 
-    @Autowired
-    private ChangeRequestRepository repository;
+    private final ChangeRequestRepository repository;
 
     private Logger logger = Logger.getGlobal();
+
+    @Autowired
+    public ChangeRequestCreator(ChangeRequestRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     public ChangeRequest create(ChangeRequest changeRequest) {
@@ -29,6 +33,7 @@ public class ChangeRequestCreator {
             throw new ValidationException("Note is required.");
         }
 
+        changeRequest.setPushedToApi(false);
         repository.save(changeRequest);
         logger.info("Created new ChangeRequest with id: " + changeRequest.getId());
         return changeRequest;
