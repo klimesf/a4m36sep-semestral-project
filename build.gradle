@@ -29,9 +29,10 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
-    compile("org.hibernate:hibernate-validator")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.hibernate:hibernate-validator")
+    compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4")
     compile("com.h2database:h2")
-    compoile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
     testCompile("junit:junit")
 }
