@@ -1,6 +1,13 @@
 .gradle
 build/
 
+# MacOS
+.DS_*
+
+# IntelliJ Idea
+.idea/
+*.iml
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
