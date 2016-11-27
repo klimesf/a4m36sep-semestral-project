@@ -32,5 +32,6 @@ dependencies {
     compile("org.hibernate:hibernate-validator")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("com.h2database:h2")
+    compoile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
     testCompile("junit:junit")
 }

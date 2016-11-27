@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,9 +9,10 @@
     <title>A4M36SEP semestral project by Filip Klimes</title>
 </head>
 <body>
-<h1>Hello!</h1>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h1>Hello!</h1>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
 </body>
 </html>
