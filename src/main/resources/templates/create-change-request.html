@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/}" th:object="${form}" method="post">
+<form action="#" th:action="@{/change-requests/create}" th:object="${form}" method="post">
     <table>
         <tr>
             <td>Client ID:</td>
@@ -19,7 +19,14 @@
         </tr>
         <tr>
             <td>Type:</td>
-            <td><input type="text" th:field="*{type}"/></td>
+            <td>
+                <select th:field="*{type}">
+                    <option th:each="state : ${T(cz.cvut.fel.sep.klimefi1.semestral.entity.ChangeRequest.Type).values()}"
+                            th:value="${state}"
+                            th:text="${state}">
+                    </option>
+                </select>
+            </td>
             <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</td>
         </tr>
         <tr>

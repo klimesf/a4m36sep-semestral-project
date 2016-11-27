@@ -38,4 +38,7 @@ public class CreateChangeRequestForm {
         this.note = note;
     }
 
+    public ChangeRequest createChangeRequest() {
+        return new ChangeRequest(getClientId(), getType(), getNote());
+    }
 }

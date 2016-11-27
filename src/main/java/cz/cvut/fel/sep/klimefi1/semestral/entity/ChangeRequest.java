@@ -2,6 +2,8 @@ package cz.cvut.fel.sep.klimefi1.semestral.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class ChangeRequest {
@@ -57,4 +59,23 @@ public class ChangeRequest {
         return pushedToApi;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setPushedToApi(Boolean pushedToApi) {
+        this.pushedToApi = pushedToApi;
+    }
 }
