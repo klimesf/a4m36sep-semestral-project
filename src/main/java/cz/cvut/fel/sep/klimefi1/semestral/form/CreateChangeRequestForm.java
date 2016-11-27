@@ -1,38 +1,32 @@
 package cz.cvut.fel.sep.klimefi1.semestral.form;
 
 
+import cz.cvut.fel.sep.klimefi1.semestral.entity.ChangeRequest;
+
 import javax.validation.constraints.NotNull;
 
 public class CreateChangeRequestForm {
 
-    private Integer clientId;
+    private Long clientId;
 
     @NotNull
-    private Type type;
+    private ChangeRequest.Type type;
 
     private String note;
 
-    public enum Type {
-        ADD,
-        REMOVE,
-        CHANGE_DATA,
-        SUSPEND,
-        REFUND
-    }
-
-    public Integer getClientId() {
+    public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
+    public void setClientId(Long clientId) {
         this.clientId = clientId;
     }
 
-    public Type getType() {
+    public ChangeRequest.Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(ChangeRequest.Type type) {
         this.type = type;
     }
 

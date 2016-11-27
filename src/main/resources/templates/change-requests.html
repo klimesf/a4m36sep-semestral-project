@@ -9,7 +9,25 @@
     <title>List of change requests</title>
 </head>
 <body>
-<h1>Hello!</h1>
+<h1>Change requests:</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Client ID</th>
+        <th>Reason</th>
+        <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="request : ${changeRequests}">
+        <td th:text="${request.id}">${request.id}</td>
+        <td th:text="${request.clientId}">${request.clientId}</td>
+        <td th:text="${request.type}">${request.type}</td>
+        <td th:text="${request.note}">${request.note}</td>
+    </tr>
+    </tbody>
+</table>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
