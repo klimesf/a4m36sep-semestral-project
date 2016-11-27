@@ -3,16 +3,17 @@ package cz.cvut.fel.sep.klimefi1.semestral.controller;
 import cz.cvut.fel.sep.klimefi1.semestral.entity.ChangeRequest;
 import cz.cvut.fel.sep.klimefi1.semestral.form.CreateChangeRequestForm;
 import cz.cvut.fel.sep.klimefi1.semestral.repository.ChangeRequestRepository;
+import cz.cvut.fel.sep.klimefi1.semestral.service.ChangeRequestCreator;
+import cz.cvut.fel.sep.klimefi1.semestral.service.ChangeRequestDeleter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import javax.validation.ValidationException;
 
 @Controller
 public class ChangeRequestController {
@@ -20,8 +21,15 @@ public class ChangeRequestController {
     @Autowired
     private ChangeRequestRepository repository;
 
+    @Autowired
+    private ChangeRequestCreator creator;
+
+    @Autowired
+    private ChangeRequestDeleter deleter;
+
     /**
      * Lists all Change Requests in a table.
+     *
      * @param model
      * @return
      */
@@ -33,7 +41,7 @@ public class ChangeRequestController {
 
     /**
      * Displays form for creating a Change Request.
-     * @param form
+     *
      * @param clientId
      * @return
      */
@@ -48,24 +56,44 @@ public class ChangeRequestController {
     }
 
     /**
-     * Receives submited form for creating a Change Request.
+     * Receives submitred form for creating a Change Request.
+     *
      * @param form
      * @param bindingResult
      * @return
      */
     @PostMapping("/change-requests/create")
-    public String postCreate(@Valid @ModelAttribute CreateChangeRequestForm form, BindingResult bindingResult) {
+    public String postCreate(@Valid @ModelAttribute CreateChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "create-change-request";
         }
 
         ChangeRequest request = form.createChangeRequest();
-        repository.save(request);
-
-        return "redirect:/change-requests";
+        try {
+            creator.create(request);
+            redirectAttributes.addFlashAttribute("successMessage", "Successfully created Change Request with id: " + request.getId());
+            return "redirect:/change-requests";
+        } catch (ValidationException ex) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Could not create Change Request: " + ex.getMessage());
+            return "redirect:/change-requests/create";
+        }
     }
 
-    public void setRepository(ChangeRequestRepository repository) {
-        this.repository = repository;
+    /**
+     * Deletes ChangeRequest with given id.
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/change-requests/delete/{id}")
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        Boolean result = deleter.delete(id);
+        if (result) {
+            redirectAttributes.addFlashAttribute("successMessage", "Successfully deleted Change Request with id: " + id);
+            return "redirect:/change-requests";
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Could not delete Change Request with id: " + id);
+            return "redirect:/change-requests/create";
+        }
     }
 }

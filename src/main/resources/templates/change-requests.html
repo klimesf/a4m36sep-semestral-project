@@ -10,6 +10,9 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
+<div th:if="${successMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='success', message=${successMessage})"></div>
+</div>
 <div class="container">
     <h1>Change requests:</h1>
     <table class="table table-striped">
@@ -28,14 +31,12 @@
             <td th:text="${request.clientId}">${request.clientId}</td>
             <td th:text="${request.type}">${request.type}</td>
             <td th:text="${request.note}">${request.note}</td>
-            <td><a href="/change-requests/delete">Delete</a></td>
+            <td><a th:href="@{'/change-requests/delete/' + ${request.id}}">Delete</a></td>
+        </tr>
+        <tr>
+            <td colspan="5"><a href="/change-requests/create">Create new Change Request</a></td>
         </tr>
         </tbody>
-        <tfoot>
-        <tr th:colspan="5">
-            <td><a href="/change-requests/create">Create new Change Request</a></td>
-        </tr>
-        </tfoot>
     </table>
 </div>
 <div th:replace="fragments/scripts :: scripts"></div>

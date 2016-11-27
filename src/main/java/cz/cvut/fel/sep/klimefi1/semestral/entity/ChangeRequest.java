@@ -2,8 +2,6 @@ package cz.cvut.fel.sep.klimefi1.semestral.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class ChangeRequest {
@@ -56,6 +54,9 @@ public class ChangeRequest {
     }
 
     public Boolean getPushedToApi() {
+        if (pushedToApi == null) {
+            return false;
+        }
         return pushedToApi;
     }
 

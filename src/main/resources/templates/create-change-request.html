@@ -10,6 +10,9 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
+<div th:if="${errorMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='danger', message=${errorMessage})"></div>
+</div>
 <div class="containter">
     <div class="col-md-6">
         <form action="#" th:action="@{/change-requests/create}" th:object="${form}" method="post">
