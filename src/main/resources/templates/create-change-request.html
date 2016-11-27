@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <title>A4M36SEP semestral project by Filip Klimes</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/}" th:object="${form}" method="post">
+    <table>
+        <tr>
+            <td>Client ID:</td>
+            <td><input type="number" th:field="*{clientId}"/></td>
+            <td th:if="${#fields.hasErrors('clientId')}" th:errors="*{clientId}">Client ID Error</td>
+        </tr>
+        <tr>
+            <td>Type:</td>
+            <td><input type="text" th:field="*{type}"/></td>
+            <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</td>
+        </tr>
+        <tr>
+            <td>Note:</td>
+            <td><input type="text" th:field="*{note}"/></td>
+            <td th:if="${#fields.hasErrors('note')}" th:errors="*{note}">Note Error</td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
