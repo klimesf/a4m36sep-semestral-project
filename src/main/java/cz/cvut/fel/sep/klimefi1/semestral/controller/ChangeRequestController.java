@@ -18,14 +18,20 @@ import javax.validation.ValidationException;
 @Controller
 public class ChangeRequestController {
 
-    @Autowired
-    private ChangeRequestRepository repository;
+    private final ChangeRequestRepository repository;
+
+    private final ChangeRequestCreator creator;
+
+    private final ChangeRequestDeleter deleter;
 
     @Autowired
-    private ChangeRequestCreator creator;
-
-    @Autowired
-    private ChangeRequestDeleter deleter;
+    public ChangeRequestController(ChangeRequestRepository repository,
+                                   ChangeRequestCreator creator,
+                                   ChangeRequestDeleter deleter) {
+        this.repository = repository;
+        this.creator = creator;
+        this.deleter = deleter;
+    }
 
     /**
      * Lists all Change Requests in a table.

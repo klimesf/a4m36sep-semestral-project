@@ -10,6 +10,29 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h1>Change requests:</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Surname</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client : ${clients}">
+            <td th:text="${client.id}"></td>
+            <td th:text="${client.firstName}"></td>
+            <td th:text="${client.surname}"></td>
+            <td th:text="${client.status}"></td>
+            <td><a th:href="@{'/change-requests/create?clientId=' + ${client.id}}">Create change request</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <div th:replace="fragments/scripts :: scripts"></div>
 </body>
 </html>
