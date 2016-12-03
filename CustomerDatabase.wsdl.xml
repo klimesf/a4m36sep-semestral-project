@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+  xmlns:tns="http://www.cvut.cz/FEL/" 
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  name="CustomerDatabase" targetNamespace="http://www.cvut.cz/FEL/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cvut.cz/FEL/">
+    
+      <xsd:complexType name="AddressType">
+        <xsd:sequence>
+          <xsd:element name="streetName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="streetNum" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="postalCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="cityPart" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="city" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="county" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="country" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      
+      <xsd:complexType name="PhoneType">
+        <xsd:sequence>
+          <xsd:element name="phoneNumberType" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="phoneNum" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="cityCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="countryCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      
+      <xsd:complexType name="CustomerType">
+        <xsd:sequence>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      	  <xsd:element name="surname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      	  <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      	  <xsd:element name="status" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      
+      <xsd:complexType name="CustomerDetailType">
+        <xsd:sequence>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="1" maxOccurs="5"/>
+      	  <xsd:element name="surname" type="xsd:string" minOccurs="1" maxOccurs="5"/>
+      	  <xsd:element name="address" type="tns:AddressType" minOccurs="1" maxOccurs="3"/>
+      	  <xsd:element name="phoneNum" type="tns:PhoneType" minOccurs="1" maxOccurs="3"/>
+      	  <xsd:element name="birthNum" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      	  <xsd:element name="countryOfOrigin" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:element name="ReadAllCustomers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="from" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="count" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadAllCustomersResponse1">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      		    <xsd:element name="customer" type="tns:CustomerType" minOccurs="0" maxOccurs="unbounded"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadCustomerDetails">
+      	<xsd:complexType>
+      		<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadCustomerDetailsResponse1">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      		    <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      		    <xsd:element name="status" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      		    <xsd:element name="customer" type="tns:CustomerDetailType" minOccurs="1" maxOccurs="1"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateCustomerChangeOrder">
+      	<xsd:complexType>
+      		<xsd:sequence>
+				<xsd:element name="requestType" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      		    <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      		    <xsd:element name="customer" type="tns:CustomerDetailType" minOccurs="0" maxOccurs="1"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateCustomerChangeOrderResponse1" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ReadAllCustomersRequest">
+  	<wsdl:part element="tns:ReadAllCustomers" name="parameters" />
+  </wsdl:message>
+  <wsdl:message name="NewOperationResponse">
+    <wsdl:part element="tns:NewOperationResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ReadAllCustomersResponse1">
+  	<wsdl:part name="parameters" element="tns:ReadAllCustomersResponse1"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReadCustomerDetailsRequest">
+  	<wsdl:part name="parameters" element="tns:ReadCustomerDetails"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReadCustomerDetailsResponse1">
+  	<wsdl:part name="parameters" element="tns:ReadCustomerDetailsResponse1"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerChangeOrderRequest">
+  	<wsdl:part name="parameters" element="tns:CreateCustomerChangeOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerChangeOrderResponse1">
+  	<wsdl:part name="parameters" element="tns:CreateCustomerChangeOrderResponse1"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CustomerDatabaseWSDL">
+        <wsdl:operation name="ReadAllCustomers">
+        	<wsdl:input message="tns:ReadAllCustomersRequest"></wsdl:input>
+        	<wsdl:output message="tns:ReadAllCustomersResponse1"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ReadCustomerDetails">
+        	<wsdl:input message="tns:ReadCustomerDetailsRequest"></wsdl:input>
+        	<wsdl:output message="tns:ReadCustomerDetailsResponse1"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateCustomerChangeOrder">
+        	<wsdl:input message="tns:CreateCustomerChangeOrderRequest"></wsdl:input>
+        	<wsdl:output message="tns:CreateCustomerChangeOrderResponse1"></wsdl:output>
+        </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomerDatabaseSOAP" type="tns:CustomerDatabaseWSDL">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="ReadAllCustomers">
+
+  		<soap:operation
+  			soapAction="http://www.cvut.cz/FEL/ReadAllCustomers" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="ReadCustomerDetails">
+  		<soap:operation
+  			soapAction="http://www.cvut.cz/FEL/ReadCustomerDetails" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="CreateCustomerChangeOrder">
+  		<soap:operation
+  			soapAction="http://www.cvut.cz/FEL/CreateCustomerChangeOrder" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerDatabase">
+    <wsdl:port binding="tns:CustomerDatabaseSOAP" name="CustomerDatabaseSOAP">
+      <soap:address location="http://localhost:8088/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
