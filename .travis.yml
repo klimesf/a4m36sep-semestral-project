@@ -2,4 +2,5 @@ language: java
 jdk:
   - oraclejdk8
 
-script: ./gradlew test
+install: ./gradlew assemble -x wsdl2java
+script: ./gradlew test -x wsdl2java
