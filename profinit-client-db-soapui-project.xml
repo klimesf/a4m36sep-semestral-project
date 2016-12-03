@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="e384318c-8585-4ae3-bb9a-1875f18aca7a" activeEnvironment="Default" name="profinit-client-db" resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="7f502d0f-ccf0-4a06-8b1d-2d2799ca9ec7" wsaVersion="NONE" name="CustomerDatabaseSOAP" type="wsdl" bindingName="{http://www.cvut.cz/FEL/}CustomerDatabaseSOAP" soapVersion="1_1" anonymous="optional" definition="file:/Users/filip/Downloads/CustomerDatabase.wsdl.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/filip/Downloads/CustomerDatabase.wsdl.xml"><con:part><con:url>file:/Users/filip/Downloads/CustomerDatabase.wsdl.xml</con:url><con:content><![CDATA[<wsdl:definitions name="CustomerDatabase" targetNamespace="http://www.cvut.cz/FEL/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cvut.cz/FEL/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cvut.cz/FEL/">
+      <xsd:complexType name="AddressType">
+        <xsd:sequence>
+          <xsd:element name="streetName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="streetNum" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="postalCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="cityPart" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="city" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="county" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="country" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PhoneType">
+        <xsd:sequence>
+          <xsd:element name="phoneNumberType" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="phoneNum" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="cityCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="countryCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CustomerType">
+        <xsd:sequence>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="surname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="status" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CustomerDetailType">
+        <xsd:sequence>
+          <xsd:element name="firstName" type="xsd:string" minOccurs="1" maxOccurs="5"/>
+          <xsd:element name="surname" type="xsd:string" minOccurs="1" maxOccurs="5"/>
+          <xsd:element name="address" type="tns:AddressType" minOccurs="1" maxOccurs="3"/>
+          <xsd:element name="phoneNum" type="tns:PhoneType" minOccurs="1" maxOccurs="3"/>
+          <xsd:element name="birthNum" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="countryOfOrigin" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ReadAllCustomers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="from" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="count" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadAllCustomersResponse1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="customer" type="tns:CustomerType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadCustomerDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadCustomerDetailsResponse1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="status" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="customer" type="tns:CustomerDetailType" minOccurs="1" maxOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateCustomerChangeOrder">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="requestType" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="customer" type="tns:CustomerDetailType" minOccurs="0" maxOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateCustomerChangeOrderResponse1"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ReadAllCustomersRequest">
+    <wsdl:part element="tns:ReadAllCustomers" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="NewOperationResponse">
+    <wsdl:part element="tns:NewOperationResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ReadAllCustomersResponse1">
+    <wsdl:part name="parameters" element="tns:ReadAllCustomersResponse1"/>
+  </wsdl:message>
+  <wsdl:message name="ReadCustomerDetailsRequest">
+    <wsdl:part name="parameters" element="tns:ReadCustomerDetails"/>
+  </wsdl:message>
+  <wsdl:message name="ReadCustomerDetailsResponse1">
+    <wsdl:part name="parameters" element="tns:ReadCustomerDetailsResponse1"/>
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerChangeOrderRequest">
+    <wsdl:part name="parameters" element="tns:CreateCustomerChangeOrder"/>
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerChangeOrderResponse1">
+    <wsdl:part name="parameters" element="tns:CreateCustomerChangeOrderResponse1"/>
+  </wsdl:message>
+  <wsdl:portType name="CustomerDatabaseWSDL">
+    <wsdl:operation name="ReadAllCustomers">
+      <wsdl:input message="tns:ReadAllCustomersRequest"/>
+      <wsdl:output message="tns:ReadAllCustomersResponse1"/>
+    </wsdl:operation>
+    <wsdl:operation name="ReadCustomerDetails">
+      <wsdl:input message="tns:ReadCustomerDetailsRequest"/>
+      <wsdl:output message="tns:ReadCustomerDetailsResponse1"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerChangeOrder">
+      <wsdl:input message="tns:CreateCustomerChangeOrderRequest"/>
+      <wsdl:output message="tns:CreateCustomerChangeOrderResponse1"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomerDatabaseSOAP" type="tns:CustomerDatabaseWSDL">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ReadAllCustomers">
+      <soap:operation soapAction="http://www.cvut.cz/FEL/ReadAllCustomers"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadCustomerDetails">
+      <soap:operation soapAction="http://www.cvut.cz/FEL/ReadCustomerDetails"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerChangeOrder">
+      <soap:operation soapAction="http://www.cvut.cz/FEL/CreateCustomerChangeOrder"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerDatabase">
+    <wsdl:port binding="tns:CustomerDatabaseSOAP" name="CustomerDatabaseSOAP">
+      <soap:address location="http://localhost:8088/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1:8088/mockCustomerDatabaseSOAP</con:endpoint><con:endpoint>http://localhost:8088/</con:endpoint></con:endpoints><con:operation id="25c6fac1-7cbf-4f9a-b1ae-31cfed4a4453" isOneWay="false" action="http://www.cvut.cz/FEL/CreateCustomerChangeOrder" name="CreateCustomerChangeOrder" bindingOperationName="CreateCustomerChangeOrder" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c3a1f19d-82a6-4aeb-b66c-c4031c887880" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:CreateCustomerChangeOrder>
+         <requestType>?</requestType>
+         <id>?</id>
+         <!--Optional:-->
+         <customer>
+            <!--1 to 5 repetitions:-->
+            <firstName>?</firstName>
+            <!--1 to 5 repetitions:-->
+            <surname>?</surname>
+            <!--1 to 3 repetitions:-->
+            <address>
+               <streetName>?</streetName>
+               <streetNum>?</streetNum>
+               <postalCode>?</postalCode>
+               <!--Optional:-->
+               <cityPart>?</cityPart>
+               <city>?</city>
+               <!--Optional:-->
+               <county>?</county>
+               <country>?</country>
+            </address>
+            <!--1 to 3 repetitions:-->
+            <phoneNum>
+               <phoneNumberType>?</phoneNumberType>
+               <phoneNum>?</phoneNum>
+               <!--Optional:-->
+               <cityCode>?</cityCode>
+               <!--Optional:-->
+               <countryCode>?</countryCode>
+            </phoneNum>
+            <birthNum>?</birthNum>
+            <countryOfOrigin>?</countryOfOrigin>
+         </customer>
+      </fel:CreateCustomerChangeOrder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/CreateCustomerChangeOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="60197b34-dca0-4ed7-9486-94d51ee993b7" isOneWay="false" action="http://www.cvut.cz/FEL/ReadAllCustomers" name="ReadAllCustomers" bindingOperationName="ReadAllCustomers" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="15fed070-a1d9-416f-9c47-7a41292c5b1d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:ReadAllCustomers>
+         <!--Optional:-->
+         <from>?</from>
+         <!--Optional:-->
+         <count>?</count>
+      </fel:ReadAllCustomers>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadAllCustomers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="bedb54a7-0ae0-4f8c-8e32-865853dd67ea" isOneWay="false" action="http://www.cvut.cz/FEL/ReadCustomerDetails" name="ReadCustomerDetails" bindingOperationName="ReadCustomerDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7b5e7ba6-8e5a-4fba-b5bc-281838c85daf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:ReadCustomerDetails>
+         <id>?</id>
+      </fel:ReadCustomerDetails>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadCustomerDetails"/></con:call></con:operation></con:interface><con:testSuite id="0302252f-7e4c-4c34-8b57-fa41afbe67bc" name="CustomerDatabaseSOAP TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f3a3fb7d-3345-4a69-98c9-608d801d980b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreateCustomerChangeOrder TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="84c613e9-5a30-412a-a2a4-54403d79ef18" name="CreateCustomerChangeOrder"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomerDatabaseSOAP</con:interface><con:operation>CreateCustomerChangeOrder</con:operation><con:request name="CreateCustomerChangeOrder" id="10ea7c14-9f77-4a74-81dc-0b31caaceafe"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:CreateCustomerChangeOrder>
+         <requestType>?</requestType>
+         <id>?</id>
+         <!--Optional:-->
+         <customer>
+            <!--1 to 5 repetitions:-->
+            <firstName>?</firstName>
+            <!--1 to 5 repetitions:-->
+            <surname>?</surname>
+            <!--1 to 3 repetitions:-->
+            <address>
+               <streetName>?</streetName>
+               <streetNum>?</streetNum>
+               <postalCode>?</postalCode>
+               <!--Optional:-->
+               <cityPart>?</cityPart>
+               <city>?</city>
+               <!--Optional:-->
+               <county>?</county>
+               <country>?</country>
+            </address>
+            <!--1 to 3 repetitions:-->
+            <phoneNum>
+               <phoneNumberType>?</phoneNumberType>
+               <phoneNum>?</phoneNum>
+               <!--Optional:-->
+               <cityCode>?</cityCode>
+               <!--Optional:-->
+               <countryCode>?</countryCode>
+            </phoneNum>
+            <birthNum>?</birthNum>
+            <countryOfOrigin>?</countryOfOrigin>
+         </customer>
+      </fel:CreateCustomerChangeOrder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.cvut.cz/FEL/CreateCustomerChangeOrder"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="dd304623-781b-407f-8a3c-8156edd0ba98" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ReadAllCustomers TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="0cfaab32-0482-4507-b44e-e7d01017ef25" name="ReadAllCustomers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomerDatabaseSOAP</con:interface><con:operation>ReadAllCustomers</con:operation><con:request name="ReadAllCustomers" id="482429e7-f9ca-49b9-b198-07d486dd74f2"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:ReadAllCustomers>
+         <!--Optional:-->
+         <from>?</from>
+         <!--Optional:-->
+         <count>?</count>
+      </fel:ReadAllCustomers>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.cvut.cz/FEL/ReadAllCustomers"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="25b5732c-37b9-4642-ba55-05aaa09da9b5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ReadCustomerDetails TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="415a35d5-141b-452d-a262-ea09944abdd1" name="ReadCustomerDetails"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomerDatabaseSOAP</con:interface><con:operation>ReadCustomerDetails</con:operation><con:request name="ReadCustomerDetails" id="27c94bc6-6b20-4c09-9539-f8115baf3b82"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:ReadCustomerDetails>
+         <id>?</id>
+      </fel:ReadCustomerDetails>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.cvut.cz/FEL/ReadCustomerDetails"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="1074d108-342c-49cc-9a95-c9279932405e" port="8088" path="/mockCustomerDatabaseSOAP" name="CustomerDatabaseSOAP MockService" host="" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CreateCustomerChangeOrder" id="1b1bc10c-6251-4963-a02a-2df28ee0fe01" interface="CustomerDatabaseSOAP" operation="CreateCustomerChangeOrder"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="dc42cd76-6d9a-4b0d-9d0e-c8a7912796f8" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:CreateCustomerChangeOrderResponse1>?</fel:CreateCustomerChangeOrderResponse1>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/CreateCustomerChangeOrder"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="ReadAllCustomers" id="c9421c8b-ce19-4733-a86e-a6d5a1b2fcb4" interface="CustomerDatabaseSOAP" operation="ReadAllCustomers"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="4347d42b-8c2b-40ee-9847-ca06c1031489" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:ReadAllCustomersResponse1>
+         <!--Zero or more repetitions:-->
+         <customer>
+            <firstName>John</firstName>
+            <surname>Doe</surname>
+            <id>1</id>
+            <status>new</status>
+         </customer>
+         <customer>
+            <firstName>Joe</firstName>
+            <surname>Foo</surname>
+            <id>2</id>
+            <status>new</status>
+         </customer>
+      </fel:ReadAllCustomersResponse1>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadAllCustomers"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="ReadCustomerDetails" id="393259a9-711f-49da-af6f-7074ab671ba5" interface="CustomerDatabaseSOAP" operation="ReadCustomerDetails"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="9b9d68ae-b751-45de-ab61-669f8af38171" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fel:ReadCustomerDetailsResponse1>
+         <id>1</id>
+         <status>new</status>
+         <customer>
+            <!--1 to 5 repetitions:-->
+            <firstName>John</firstName>
+            <!--1 to 5 repetitions:-->
+            <surname>Doe</surname>
+            <!--1 to 3 repetitions:-->
+            <address>
+               <streetName>Ječná</streetName>
+               <streetNum>1</streetNum>
+               <postalCode>11000</postalCode>
+               <!--Optional:-->
+               <cityPart></cityPart>
+               <city>Praha</city>
+               <!--Optional:-->
+               <county>?</county>
+               <country>Česká republika</country>
+            </address>
+            <!--1 to 3 repetitions:-->
+            <phoneNum>
+               <phoneNumberType>?</phoneNumberType>
+               <phoneNum>+420123456789</phoneNum>
+               <!--Optional:-->
+               <cityCode>?</cityCode>
+               <!--Optional:-->
+               <countryCode>?</countryCode>
+            </phoneNum>
+            <birthNum>12345678</birthNum>
+            <countryOfOrigin>ČR</countryOfOrigin>
+         </customer>
+      </fel:ReadCustomerDetailsResponse1>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadCustomerDetails"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
