@@ -52,7 +52,7 @@ public class AuthorizationTests {
 
     @Test
     public void accessSecuredResourceUnauthenticatedThenRedirectsToLogin() throws Exception {
-        mockMvc.perform(get("/clients"))
+        mockMvc.perform(get("/change-requests"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("**/login"));
     }
@@ -60,7 +60,7 @@ public class AuthorizationTests {
     @Test
     @WithMockUser
     public void accessSecuredResourceAuthenticatedThenOk() throws Exception {
-        mockMvc.perform(get("/clients"))
+        mockMvc.perform(get("/change-requests"))
                 .andExpect(status().isOk());
     }
 }
