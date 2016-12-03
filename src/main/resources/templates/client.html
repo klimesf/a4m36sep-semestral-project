@@ -10,10 +10,43 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-<h1>Hello!</h1>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-</body>
+<div class="container">
+    <h1>Client Detail</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <td th:text="${client.id}"></td>
+        </tr>
+        <tr>
+            <th>First name</th>
+            <td th:text="${client.firstName}"></td>
+        </tr>
+        <tr>
+            <th>Surname</th>
+            <td th:text="${client.surname}"></td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td th:text="${client.address}"></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td th:text="${client.phoneNum}"></td>
+        </tr>
+        <tr>
+            <th>Birth Number</th>
+            <td th:text="${client.birthNum}"></td>
+        </tr>
+        <tr>
+            <th>Country of origin</th>
+            <td th:text="${client.countryOfOrigin}"></td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td th:text="${client.status}"></td>
+        </tr>
+    </table>
+</div>
 <div th:replace="fragments/scripts :: scripts"></div>
+</body>
 </html>

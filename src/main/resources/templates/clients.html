@@ -11,7 +11,7 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div class="container">
-    <h1>Change requests:</h1>
+    <h1>Clients</h1>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -28,7 +28,10 @@
             <td th:text="${client.firstName}"></td>
             <td th:text="${client.surname}"></td>
             <td th:text="${client.status}"></td>
-            <td><a th:href="@{'/change-requests/create?clientId=' + ${client.id}}">Create change request</a></td>
+            <td>
+                <a th:href="@{'/client/' + ${client.id}}">Detail</a> |
+                <a th:href="@{'/change-requests/create?clientId=' + ${client.id}}">Create change request</a>
+            </td>
         </tr>
         </tbody>
     </table>

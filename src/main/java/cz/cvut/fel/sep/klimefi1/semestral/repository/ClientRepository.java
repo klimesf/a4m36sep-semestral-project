@@ -1,7 +1,7 @@
 package cz.cvut.fel.sep.klimefi1.semestral.repository;
 
-import cz.cvut.fel.sep.klimefi1.semestral.ws.customerDatabase.CustomerDetailType;
-import cz.cvut.fel.sep.klimefi1.semestral.ws.customerDatabase.CustomerType;
+import cz.cvut.fel.sep.klimefi1.semestral.dto.ClientDTO;
+import cz.cvut.fel.sep.klimefi1.semestral.dto.ClientDetailDTO;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface ClientRepository {
      *
      * @return The list of customers.
      */
-    List<CustomerType> findAll();
+    List<ClientDTO> findAll();
 
     /**
      * Finds Customer with given ID.
@@ -20,5 +20,5 @@ public interface ClientRepository {
      * @param id The ID.
      * @return The Customer.
      */
-    CustomerDetailType find(Integer id);
+    ClientDetailDTO find(Integer id);
 }
