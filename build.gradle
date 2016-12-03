@@ -4,15 +4,18 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+        classpath("no.nils:wsdl2java:0.10")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'no.nils.wsdl2java'
 
 jar {
     baseName = 'semestral-project'
@@ -37,4 +40,19 @@ dependencies {
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.springframework.security:spring-security-test")
+}
+
+wsdl2javaExt {
+    cxfVersion = "3.1.8"
+}
+
+wsdl2javaExt {
+    deleteGeneratedSourcesOnClean = false
+}
+
+wsdl2java{
+    wsdlsToGenerate = [
+            ['-p','cz.cvut.fel.sep.klimefi1.semestral.ws.customerDatabase', '-client', 'http://localhost:8088/mockCustomerDatabaseSOAP?wsdl']
+    ]
+    generatedWsdlDir = file("src/main/java")
 }
