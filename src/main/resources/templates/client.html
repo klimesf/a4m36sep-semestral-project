@@ -10,28 +10,16 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
+<div th:if="${errorMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='danger', message=${errorMessage})"></div>
+</div>
 <div class="container">
     <h1>Client Detail</h1>
-    <table class="table table-striped">
+    <p th:if="${client == null}">No data</p>
+    <table th:if="${client != null}" class="table table-striped">
         <tr>
             <th>ID</th>
             <td th:text="${client.id}"></td>
-        </tr>
-        <tr>
-            <th>First name</th>
-            <td th:text="${client.firstName}"></td>
-        </tr>
-        <tr>
-            <th>Surname</th>
-            <td th:text="${client.surname}"></td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td th:text="${client.address}"></td>
-        </tr>
-        <tr>
-            <th>Phone</th>
-            <td th:text="${client.phoneNum}"></td>
         </tr>
         <tr>
             <th>Birth Number</th>
@@ -42,8 +30,32 @@
             <td th:text="${client.countryOfOrigin}"></td>
         </tr>
         <tr>
-            <th>State</th>
+            <th>Status</th>
             <td th:text="${client.status}"></td>
+        </tr>
+    </table>
+    <h2>First names</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="firstName : ${client.firstName}">
+            <td th:text="${firstName}"></td>
+        </tr>
+    </table>
+    <h2>Surnames</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="surname : ${client.surname}">
+            <td th:text="${surname}"></td>
+        </tr>
+    </table>
+    <h2>Addresses</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="address : ${client.address}">
+            <td th:text="${address}"></td>
+        </tr>
+    </table>
+    <h2>Phone numbers</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="phone : ${client.phoneNum}">
+            <td th:text="${phone}"></td>
         </tr>
     </table>
 </div>

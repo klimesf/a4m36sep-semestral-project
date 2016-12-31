@@ -10,9 +10,13 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
+<div th:if="${errorMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='danger', message=${errorMessage})"></div>
+</div>
 <div class="container">
     <h1>Clients</h1>
-    <table class="table table-striped">
+    <p th:if="${clients == null}">No clients</p>
+    <table th:if="${clients != null}" class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
@@ -29,8 +33,11 @@
             <td th:text="${client.surname}"></td>
             <td th:text="${client.status}"></td>
             <td>
-                <a th:href="@{'/client/' + ${client.id}}">Detail</a> |
-                <a th:href="@{'/change-requests/create?clientId=' + ${client.id}}">Create change request</a>
+                <a th:href="@{'/client/' + ${client.id}}" class="btn btn-default">Detail</a>
+                <a th:href="@{'/change-requests/edit?clientId=' + ${client.id}}" class="btn btn-default">Edit</a>
+                <a th:href="@{'/change-requests/remove?clientId=' + ${client.id}}" class="btn btn-default">Remove</a>
+                <a th:href="@{'/change-requests/suspend?clientId=' + ${client.id}}" class="btn btn-default">Suspend</a>
+                <a th:href="@{'/change-requests/refund?clientId=' + ${client.id}}" class="btn btn-default">Refund</a>
             </td>
         </tr>
         </tbody>

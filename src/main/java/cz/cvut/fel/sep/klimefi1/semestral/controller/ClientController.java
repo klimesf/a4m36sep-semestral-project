@@ -1,11 +1,14 @@
 package cz.cvut.fel.sep.klimefi1.semestral.controller;
 
+import cz.cvut.fel.sep.klimefi1.semestral.exception.NotFoundException;
 import cz.cvut.fel.sep.klimefi1.semestral.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.xml.ws.WebServiceException;
 
 @Controller
 public class ClientController {
@@ -19,13 +22,23 @@ public class ClientController {
 
     @RequestMapping("/clients")
     public String list(Model model) {
-        model.addAttribute("clients", repository.findAll());
+        try {
+            model.addAttribute("clients", repository.findAll());
+        } catch (WebServiceException e) {
+            model.addAttribute("errorMessage", "Failed to connect to Profinit API.");
+            model.addAttribute("clients", null);
+        }
         return "clients";
     }
 
     @RequestMapping("/client/{id}")
-    public String detail(@PathVariable Integer id, Model model) {
-        model.addAttribute("client", repository.find(id));
+    public String detail(@PathVariable Integer id, Model model) throws NotFoundException {
+        try {
+            model.addAttribute("client", repository.find(id));
+        } catch (WebServiceException e) {
+            model.addAttribute("errorMessage", "Failed to connect to Profinit API.");
+            model.addAttribute("client", null);
+        }
         return "client";
     }
 

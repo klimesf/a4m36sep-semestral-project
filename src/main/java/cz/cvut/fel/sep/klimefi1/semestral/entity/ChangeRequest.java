@@ -12,9 +12,19 @@ public class ChangeRequest {
 
     private Type type;
 
-    private String note;
-
     private Boolean pushedToApi = false;
+
+    protected String firstName;
+
+    protected String surname;
+
+    protected String address;
+
+    protected String phoneNum;
+
+    protected String birthNum;
+
+    protected String countryOfOrigin;
 
     public enum Type {
         ADD,
@@ -27,10 +37,20 @@ public class ChangeRequest {
     public ChangeRequest() {
     }
 
-    public ChangeRequest(Long clientId, Type type, String note) {
+    public ChangeRequest(Long clientId, Type type, String firstName, String surname, String address, String phoneNum, String birthNum, String countryOfOrigin) {
         this.clientId = clientId;
         this.type = type;
-        this.note = note;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.address = address;
+        this.phoneNum = phoneNum;
+        this.birthNum = birthNum;
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
+    public ChangeRequest(Long clientId, Type type) {
+        this.clientId = clientId;
+        this.type = type;
     }
 
     @Id
@@ -45,10 +65,6 @@ public class ChangeRequest {
         return type;
     }
 
-    public String getNote() {
-        return note;
-    }
-
     public Long getClientId() {
         return clientId;
     }
@@ -59,6 +75,30 @@ public class ChangeRequest {
             return false;
         }
         return pushedToApi;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public String getBirthNum() {
+        return birthNum;
+    }
+
+    public String getCountryOfOrigin() {
+        return countryOfOrigin;
     }
 
     public void setId(Long id) {
@@ -73,11 +113,32 @@ public class ChangeRequest {
         this.type = type;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     public void setPushedToApi(Boolean pushedToApi) {
         this.pushedToApi = pushedToApi;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public void setBirthNum(String birthNum) {
+        this.birthNum = birthNum;
+    }
+
+    public void setCountryOfOrigin(String countryOfOrigin) {
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
 }

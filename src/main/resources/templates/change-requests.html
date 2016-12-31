@@ -20,8 +20,7 @@
         <tr>
             <th>ID</th>
             <th>Client ID</th>
-            <th>Reason</th>
-            <th>Note</th>
+            <th>Type</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -30,8 +29,7 @@
             <td th:text="${request.id}">${request.id}</td>
             <td th:text="${request.clientId}">${request.clientId}</td>
             <td th:text="${request.type}">${request.type}</td>
-            <td th:text="${request.note}">${request.note}</td>
-            <td><a th:href="@{'/change-requests/delete/' + ${request.id}}">Delete</a></td>
+            <td><a th:href="@{'/change-requests/delete/' + ${request.id}}" class="btn btn-default">Delete</a></td>
         </tr>
         <tr>
             <td colspan="5"><a href="/change-requests/create">Create new Change Request</a></td>

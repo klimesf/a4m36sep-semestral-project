@@ -1,16 +1,18 @@
 package cz.cvut.fel.sep.klimefi1.semestral.dto;
 
+import java.util.List;
+
 public class ClientDetailDTO {
     private Integer id;
-    private String firstName;
-    private String surname;
-    private String address;
-    private String phoneNum;
+    private List<String> firstName;
+    private List<String> surname;
+    private List<String> address;
+    private List<String> phoneNum;
     private String birthNum;
     private String countryOfOrigin;
     private String status;
 
-    public ClientDetailDTO(Integer id, String firstName, String surname, String address, String phoneNum, String birthNum, String countryOfOrigin, String status) {
+    public ClientDetailDTO(Integer id, List<String> firstName, List<String> surname, List<String> address, List<String> phoneNum, String birthNum, String countryOfOrigin, String status) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -25,19 +27,19 @@ public class ClientDetailDTO {
         return id;
     }
 
-    public String getFirstName() {
+    public List<String> getFirstName() {
         return firstName;
     }
 
-    public String getSurname() {
+    public List<String> getSurname() {
         return surname;
     }
 
-    public String getAddress() {
+    public List<String> getAddress() {
         return address;
     }
 
-    public String getPhoneNum() {
+    public List<String> getPhoneNum() {
         return phoneNum;
     }
 

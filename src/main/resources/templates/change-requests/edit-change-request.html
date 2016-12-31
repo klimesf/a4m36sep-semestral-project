@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <title>A4M36SEP semestral project by Filip Klimes</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:if="${errorMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='danger', message=${errorMessage})"></div>
+</div>
+<div class="containter">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h1>Create Change Request - Edit</h1>
+        <form action="#" th:action="@{/change-requests/edit}" th:object="${form}" method="post">
+            <div class="form-group">
+                <label for="clientId">Client ID</label>
+                <input id="clientId" type="number" th:field="*{clientId}" class="form-control"/>
+                <label for="clientId" th:if="${#fields.hasErrors('clientId')}" th:errors="*{clientId}"></label>
+            </div>
+            <div class="form-group">
+                <label for="firstName">First name</label>
+                <input id="firstName" type="text" th:field="*{firstName}" class="form-control"/>
+                <label for="firstName" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></label>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input id="surname" type="text" th:field="*{surname}" class="form-control"/>
+                <label for="surname" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></label>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input id="address" type="text" th:field="*{address}" class="form-control"/>
+                <label for="address" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></label>
+            </div>
+            <div class="form-group">
+                <label for="phoneNum">Phone number</label>
+                <input id="phoneNum" type="text" th:field="*{phoneNum}" class="form-control"/>
+                <label for="phoneNum" th:if="${#fields.hasErrors('phoneNum')}" th:errors="*{phoneNum}"></label>
+            </div>
+            <div class="form-group">
+                <label for="birthNum">Birth number</label>
+                <input id="birthNum" type="text" th:field="*{birthNum}" class="form-control"/>
+                <label for="birthNum" th:if="${#fields.hasErrors('birthNum')}" th:errors="*{birthNum}"></label>
+            </div>
+            <div class="form-group">
+                <label for="countryOfOrigin">Country of origin</label>
+                <input id="countryOfOrigin" type="text" th:field="*{countryOfOrigin}" class="form-control"/>
+                <label for="countryOfOrigin" th:if="${#fields.hasErrors('countryOfOrigin')}" th:errors="*{countryOfOrigin}"></label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

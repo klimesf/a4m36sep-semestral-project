@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScheduledTasks {
 
+    private final ChangeRequestUploader changeRequestUploader;
+
     @Autowired
-    private ChangeRequestUploader changeRequestUploader;
+    public ScheduledTasks(ChangeRequestUploader changeRequestUploader) {
+        this.changeRequestUploader = changeRequestUploader;
+    }
 
     /**
      * Uploads ChangeRequests to external API each day at 3am from Monday to Friday.

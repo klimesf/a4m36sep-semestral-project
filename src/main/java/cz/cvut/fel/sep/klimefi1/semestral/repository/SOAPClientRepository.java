@@ -3,10 +3,14 @@ package cz.cvut.fel.sep.klimefi1.semestral.repository;
 import cz.cvut.fel.sep.klimefi1.semestral.dto.ClientDTO;
 import cz.cvut.fel.sep.klimefi1.semestral.dto.ClientDetailDTO;
 import cz.cvut.fel.sep.klimefi1.semestral.ws.customerDatabase.*;
+
+import java.net.ConnectException;
+
 import org.springframework.stereotype.Service;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Holder;
+import javax.xml.ws.WebServiceException;
 import java.math.BigInteger;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,10 +30,12 @@ public class SOAPClientRepository implements ClientRepository {
     @Override
     public List<ClientDTO> findAll() {
         List<CustomerType> customers = createPort().readAllCustomers(BigInteger.ZERO, BigInteger.TEN);
+
         List<ClientDTO> clients = new ArrayList<>();
         for (CustomerType customer : customers) {
+            BigInteger id = customer.getId();
             ClientDTO client = new ClientDTO(
-                    customer.getId().intValue(),
+                    id != null ? id.intValue() : null,
                     customer.getFirstName(),
                     customer.getSurname(),
                     customer.getStatus()
@@ -46,27 +52,24 @@ public class SOAPClientRepository implements ClientRepository {
         Holder<CustomerDetailType> customerHolder = new Holder<CustomerDetailType>();
         createPort().readCustomerDetails(idHolder, statusHolder, customerHolder);
 
-        String firstName = String.join(" ", customerHolder.value.getFirstName());
-        String surname = String.join(" ", customerHolder.value.getSurname());
-
-        String phoneNum = null;
+        List<String> phoneNum = new ArrayList<>();
         for (PhoneType p : customerHolder.value.getPhoneNum()) {
-            phoneNum = phoneNum == null ? p.getPhoneNum() : String.join(", ", phoneNum, p.getPhoneNum());
+            phoneNum.add(p.getPhoneNum());
         }
 
-        String address = null;
+        List<String> addresses = new ArrayList<>();
         for (AddressType a : customerHolder.value.getAddress()) {
             StringBuilder sb = new StringBuilder()
                     .append(a.getStreetName()).append(" ").append(a.getStreetNum()).append(", ")
-                    .append(a.getCity()).append(", ").append(a.getCountry());
-            address = address == null ? sb.toString() : String.join(", ", address, sb.toString());
+                    .append(a.getCity()).append(", ").append(a.getPostalCode()).append(", ").append(a.getCountry());
+            addresses.add(sb.toString());
         }
 
         return new ClientDetailDTO(
                 id,
-                firstName,
-                surname,
-                address,
+                customerHolder.value.getFirstName(),
+                customerHolder.value.getSurname(),
+                addresses,
                 phoneNum,
                 customerHolder.value.getBirthNum(),
                 customerHolder.value.getCountryOfOrigin(),

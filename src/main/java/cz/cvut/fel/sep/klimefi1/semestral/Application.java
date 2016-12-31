@@ -16,11 +16,11 @@ public class Application {
     @Bean
     public CommandLineRunner createDefaultData(ChangeRequestRepository repository) {
         return (args) -> {
-            repository.save(new ChangeRequest(null, ChangeRequest.Type.ADD, "Name: John Doe"));
-            repository.save(new ChangeRequest(101L, ChangeRequest.Type.REMOVE, null));
-            repository.save(new ChangeRequest(102L, ChangeRequest.Type.CHANGE_DATA, "Name: Chuck Norris"));
-            repository.save(new ChangeRequest(103L, ChangeRequest.Type.REFUND, "Reason: ..."));
-            repository.save(new ChangeRequest(100L, ChangeRequest.Type.SUSPEND, "Reason: Violation of agreements"));
+            repository.save(new ChangeRequest(null, ChangeRequest.Type.ADD));
+            repository.save(new ChangeRequest(101L, ChangeRequest.Type.REMOVE));
+            repository.save(new ChangeRequest(102L, ChangeRequest.Type.CHANGE_DATA));
+            repository.save(new ChangeRequest(103L, ChangeRequest.Type.REFUND));
+            repository.save(new ChangeRequest(100L, ChangeRequest.Type.SUSPEND));
         };
     }
 }
