@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <title>Client</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:if="${errorMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='danger', message=${errorMessage})"></div>
+</div>
+<div class="container">
+    <h1>Client Detail</h1>
+    <p th:if="${client == null}">No data</p>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <td th:text="${client.id}"></td>
+        </tr>
+        <tr>
+            <th>Birth Number</th>
+            <td th:text="${client.birthNum}"></td>
+        </tr>
+        <tr>
+            <th>Country of origin</th>
+            <td th:text="${client.countryOfOrigin}"></td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td th:text="${client.status}"></td>
+        </tr>
+    </table>
+    <h2>First names</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="firstName : ${client.firstName}">
+            <td th:text="${firstName}"></td>
+        </tr>
+    </table>
+    <h2>Surnames</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="surname : ${client.surname}">
+            <td th:text="${surname}"></td>
+        </tr>
+    </table>
+    <h2>Addresses</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="address : ${client.address}">
+            <td th:text="${address}"></td>
+        </tr>
+    </table>
+    <h2>Phone numbers</h2>
+    <table th:if="${client != null}" class="table table-striped">
+        <tr th:each="phone : ${client.phoneNum}">
+            <td th:text="${phone}"></td>
+        </tr>
+    </table>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

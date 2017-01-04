@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <title>List of change requests</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:if="${successMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='success', message=${successMessage})"></div>
+</div>
+<div class="container">
+    <h1>Change requests</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Client ID</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="request : ${changeRequests}">
+            <td th:text="${request.id}">${request.id}</td>
+            <td th:text="${request.clientId}">${request.clientId}</td>
+            <td th:text="${request.type}">${request.type}</td>
+            <td><a th:href="@{'/change-requests/delete/' + ${request.id}}" class="btn btn-default">Delete</a></td>
+        </tr>
+        <tr>
+            <td colspan="5"><a href="/change-requests/add">Create new Change Request</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/change-requests'(page=${nextPage})}">Next page</a>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

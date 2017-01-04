@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+<nav class="navbar navbar-default" th:fragment="header">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Client Change Request App</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/clients">Clients</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Change Requests <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/change-requests">List</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Create change request</li>
+                        <li><a href="/change-requests/add">Add client</a></li>
+                        <li><a href="/change-requests/edit">Edit client</a></li>
+                        <li><a href="/change-requests/remove">Remove client</a></li>
+                        <li><a href="/change-requests/refund">Refund client</a></li>
+                        <li><a href="/change-requests/suspend">Suspend client</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAuthenticated()"><a href="/login?logout">Logout</a></li>
+                <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+</body>
+</html>

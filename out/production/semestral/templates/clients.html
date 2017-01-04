@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <title>List of clients</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:if="${errorMessage} != null">
+    <div th:replace="fragments/alert :: alert(type='danger', message=${errorMessage})"></div>
+</div>
+<div class="container">
+    <h1>Clients</h1>
+    <p th:if="${clients == null}">No clients</p>
+    <table th:if="${clients != null}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Surname</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client : ${clients}">
+            <td th:text="${client.id}"></td>
+            <td th:text="${client.firstName}"></td>
+            <td th:text="${client.surname}"></td>
+            <td th:text="${client.status}"></td>
+            <td>
+                <a th:href="@{'/client/' + ${client.id}}" class="btn btn-default">Detail</a>
+                <a th:href="@{'/change-requests/edit?clientId=' + ${client.id}}" class="btn btn-default">Edit</a>
+                <a th:href="@{'/change-requests/remove?clientId=' + ${client.id}}" class="btn btn-default">Remove</a>
+                <a th:href="@{'/change-requests/suspend?clientId=' + ${client.id}}" class="btn btn-default">Suspend</a>
+                <a th:href="@{'/change-requests/refund?clientId=' + ${client.id}}" class="btn btn-default">Refund</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/clients'(page=${nextPage})}">Next page</a>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

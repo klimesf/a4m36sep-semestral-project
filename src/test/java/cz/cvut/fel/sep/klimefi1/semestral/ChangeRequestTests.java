@@ -79,7 +79,7 @@ public class ChangeRequestTests {
                         .param("surname", "Doe")
                         .param("address", "Add")
                         .param("phoneNum", "123456789")
-                        .param("birthNum", "123456789")
+                        .param("birthNum", "1234567890")
                         .param("countryOfOrigin", "Czech Republic"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/change-requests"));
@@ -96,7 +96,7 @@ public class ChangeRequestTests {
                         .param("surname", "Doe")
                         .param("address", "Add")
                         .param("phoneNum", "123456789")
-                        .param("birthNum", "123456789")
+                        .param("birthNum", "1234567890")
                         .param("countryOfOrigin", "Czech Republic"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/change-requests"));
