@@ -24,30 +24,6 @@ public class ChangeRequestCreator {
 
     @Transactional
     public ChangeRequest create(ChangeRequest changeRequest) {
-        // TODO: Check id client with given id exists
-
-        if (changeRequest.getClientId() == null && changeRequest.getType() != ChangeRequest.Type.ADD) {
-            throw new ValidationException("ClientId is required.");
-        }
-        if (changeRequest.getType() == ChangeRequest.Type.ADD && changeRequest.getFirstName().equals("")) {
-            throw new ValidationException("First name is required.");
-        }
-        if (changeRequest.getType() == ChangeRequest.Type.ADD && changeRequest.getSurname().equals("")) {
-            throw new ValidationException("Surname is required.");
-        }
-        if (changeRequest.getType() == ChangeRequest.Type.ADD && changeRequest.getAddress().equals("")) {
-            throw new ValidationException("Address is required.");
-        }
-        if (changeRequest.getType() == ChangeRequest.Type.ADD && changeRequest.getPhoneNum().equals("")) {
-            throw new ValidationException("Phone number is required.");
-        }
-        if (changeRequest.getType() == ChangeRequest.Type.ADD && changeRequest.getBirthNum().equals("")) {
-            throw new ValidationException("Birth number is required.");
-        }
-        if (changeRequest.getType() == ChangeRequest.Type.ADD && changeRequest.getCountryOfOrigin().equals("")) {
-            throw new ValidationException("Country of origin is required.");
-        }
-
         changeRequest.setPushedToApi(false);
         repository.save(changeRequest);
         logger.info("Created new ChangeRequest with id: " + changeRequest.getId());

@@ -74,8 +74,9 @@ public class ChangeRequestController {
      * @return
      */
     @PostMapping("/change-requests/add")
-    public String postAdd(@Valid @ModelAttribute AddChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String postAdd(@Valid @ModelAttribute(name = "form") AddChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("form", form);
             return "change-requests/add-change-request";
         }
 
@@ -116,8 +117,9 @@ public class ChangeRequestController {
      * @return
      */
     @PostMapping("/change-requests/edit")
-    public String postEdit(@Valid @ModelAttribute EditChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String postEdit(@Valid @ModelAttribute(name = "form") EditChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("form", form);
             return "change-requests/edit-change-request";
         }
 
@@ -156,8 +158,9 @@ public class ChangeRequestController {
      * @return
      */
     @PostMapping("/change-requests/refund")
-    public String postRefund(@Valid @ModelAttribute RefundChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String postRefund(@Valid @ModelAttribute(name = "form") RefundChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("form", form);
             return "change-requests/refund-change-request";
         }
 
@@ -196,8 +199,9 @@ public class ChangeRequestController {
      * @return
      */
     @PostMapping("/change-requests/suspend")
-    public String postSuspend(@Valid @ModelAttribute SuspendChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String postSuspend(@Valid @ModelAttribute(name = "form") SuspendChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("form", form);
             return "change-requests/suspend-change-request";
         }
 
@@ -236,8 +240,9 @@ public class ChangeRequestController {
      * @return
      */
     @PostMapping("/change-requests/remove")
-    public String postRemove(@Valid @ModelAttribute RemoveChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String postRemove(@Valid @ModelAttribute(name = "form") RemoveChangeRequestForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("form", form);
             return "change-requests/remove-change-request";
         }
 

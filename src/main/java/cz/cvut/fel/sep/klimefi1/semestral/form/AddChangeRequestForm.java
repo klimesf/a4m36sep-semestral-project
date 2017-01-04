@@ -2,27 +2,28 @@ package cz.cvut.fel.sep.klimefi1.semestral.form;
 
 
 import cz.cvut.fel.sep.klimefi1.semestral.entity.ChangeRequest;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class AddChangeRequestForm {
 
-    @NotNull
+    @NotEmpty
     protected String firstName;
 
-    @NotNull
+    @NotEmpty
     protected String surname;
 
-    @NotNull
+    @NotEmpty
     protected String address;
 
-    @NotNull
+    @Pattern(regexp = "[0-9]{9}")
     protected String phoneNum;
 
-    @NotNull
+    @Pattern(regexp = "[0-9]{10}")
     protected String birthNum;
 
-    @NotNull
+    @NotEmpty
     protected String countryOfOrigin;
 
     public String getFirstName() {

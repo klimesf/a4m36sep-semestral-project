@@ -3,11 +3,13 @@ package cz.cvut.fel.sep.klimefi1.semestral.form;
 
 import cz.cvut.fel.sep.klimefi1.semestral.entity.ChangeRequest;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class SuspendChangeRequestForm {
 
     @NotNull
+    @Min(1)
     private Long clientId;
 
     public Long getClientId() {
