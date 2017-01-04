@@ -32,10 +32,11 @@
             <td><a th:href="@{'/change-requests/delete/' + ${request.id}}" class="btn btn-default">Delete</a></td>
         </tr>
         <tr>
-            <td colspan="5"><a href="/change-requests/create">Create new Change Request</a></td>
+            <td colspan="5"><a href="/change-requests/add">Create new Change Request</a></td>
         </tr>
         </tbody>
     </table>
+    <a th:href="@{'/change-requests'(page=${nextPage})}">Next page</a>
 </div>
 <div th:replace="fragments/scripts :: scripts"></div>
 </body>

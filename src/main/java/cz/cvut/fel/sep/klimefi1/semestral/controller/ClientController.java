@@ -7,13 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.xml.ws.WebServiceException;
+import java.math.BigInteger;
+import java.util.logging.Logger;
 
 @Controller
 public class ClientController {
 
     private final ClientRepository repository;
+
+    private final Logger logger = Logger.getGlobal();
 
     @Autowired
     public ClientController(ClientRepository repository) {
@@ -21,10 +26,18 @@ public class ClientController {
     }
 
     @RequestMapping("/clients")
-    public String list(Model model) {
+    public String list(@RequestParam(required = false, name = "page", defaultValue = "1") Integer page, Model model) {
         try {
-            model.addAttribute("clients", repository.findAll());
+            model.addAttribute(
+                    "clients",
+                    repository.findAll(
+                            BigInteger.valueOf(50L),
+                            BigInteger.valueOf((page - 1) * 50L)
+                    )
+            );
+            model.addAttribute("nextPage", page + 1);
         } catch (WebServiceException e) {
+            logger.warning("Failed to retrieve list of clients: " + e.getMessage());
             model.addAttribute("errorMessage", "Failed to connect to Profinit API.");
             model.addAttribute("clients", null);
         }
@@ -36,6 +49,7 @@ public class ClientController {
         try {
             model.addAttribute("client", repository.find(id));
         } catch (WebServiceException e) {
+            logger.warning("Failed to retrieve detail of client: " + e.getMessage());
             model.addAttribute("errorMessage", "Failed to connect to Profinit API.");
             model.addAttribute("client", null);
         }

@@ -8,6 +8,8 @@ import cz.cvut.fel.sep.klimefi1.semestral.repository.ClientRepository;
 import cz.cvut.fel.sep.klimefi1.semestral.service.ChangeRequestCreator;
 import cz.cvut.fel.sep.klimefi1.semestral.service.ChangeRequestDeleter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,8 +48,10 @@ public class ChangeRequestController {
      * @return
      */
     @GetMapping("/change-requests")
-    public String list(Model model) {
-        model.addAttribute("changeRequests", repository.findAll());
+    public String list(@RequestParam(required = false, name = "page", defaultValue = "1") Integer page, Model model) {
+        Pageable pageable = new PageRequest(page - 1, 50);
+        model.addAttribute("changeRequests", repository.findAll(pageable));
+        model.addAttribute("nextPage", page + 1);
         return "change-requests";
     }
 
@@ -98,27 +102,7 @@ public class ChangeRequestController {
         if (clientId != null) {
             form.setClientId(clientId);
             ClientDetailDTO client = clientRepository.find(Math.toIntExact(clientId));
-            if (client != null) {
-
-                if (client.getFirstName().size() > 0) {
-                    form.setFirstName(client.getFirstName().iterator().next());
-                }
-
-                if (client.getSurname().size() > 0) {
-                    form.setSurname(client.getSurname().iterator().next());
-                }
-
-                if (client.getAddress().size() > 0) {
-                    form.setAddress(client.getAddress().iterator().next());
-                }
-
-                if (client.getPhoneNum().size() > 0) {
-                    form.setPhoneNum(client.getPhoneNum().iterator().next());
-                }
-
-                form.setBirthNum(client.getBirthNum());
-                form.setCountryOfOrigin(client.getCountryOfOrigin());
-            }
+            form.preFillData(client);
         }
         model.addAttribute("form", form);
         return "change-requests/edit-change-request";

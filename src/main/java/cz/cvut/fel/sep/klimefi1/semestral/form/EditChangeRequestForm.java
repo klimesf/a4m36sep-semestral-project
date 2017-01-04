@@ -1,6 +1,7 @@
 package cz.cvut.fel.sep.klimefi1.semestral.form;
 
 
+import cz.cvut.fel.sep.klimefi1.semestral.dto.ClientDetailDTO;
 import cz.cvut.fel.sep.klimefi1.semestral.entity.ChangeRequest;
 
 import javax.validation.constraints.NotNull;
@@ -88,4 +89,26 @@ public class EditChangeRequestForm {
         return new ChangeRequest(getClientId(), ChangeRequest.Type.CHANGE_DATA, getFirstName(), getSurname(), getAddress(), getPhoneNum(), getBirthNum(), getCountryOfOrigin());
     }
 
+    public void preFillData(ClientDetailDTO client) {
+        if (client != null) {
+            if (client.getFirstName().size() > 0) {
+                setFirstName(client.getFirstName().iterator().next());
+            }
+
+            if (client.getSurname().size() > 0) {
+                setSurname(client.getSurname().iterator().next());
+            }
+
+            if (client.getAddress().size() > 0) {
+                setAddress(client.getAddress().iterator().next());
+            }
+
+            if (client.getPhoneNum().size() > 0) {
+                setPhoneNum(client.getPhoneNum().iterator().next());
+            }
+
+            setBirthNum(client.getBirthNum());
+            setCountryOfOrigin(client.getCountryOfOrigin());
+        }
+    }
 }

@@ -190,7 +190,7 @@
          </customer>
       </fel:CreateCustomerChangeOrder>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/CreateCustomerChangeOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="60197b34-dca0-4ed7-9486-94d51ee993b7" isOneWay="false" action="http://www.cvut.cz/FEL/ReadAllCustomers" name="ReadAllCustomers" bindingOperationName="ReadAllCustomers" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="15fed070-a1d9-416f-9c47-7a41292c5b1d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/CreateCustomerChangeOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="60197b34-dca0-4ed7-9486-94d51ee993b7" isOneWay="false" action="http://www.cvut.cz/FEL/ReadAllCustomers" name="ReadAllCustomers" bindingOperationName="ReadAllCustomers" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="15fed070-a1d9-416f-9c47-7a41292c5b1d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockCustomerDatabaseSOAP</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
    <soapenv:Header/>
    <soapenv:Body>
       <fel:ReadAllCustomers>
@@ -200,14 +200,14 @@
          <count>?</count>
       </fel:ReadAllCustomers>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadAllCustomers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="bedb54a7-0ae0-4f8c-8e32-865853dd67ea" isOneWay="false" action="http://www.cvut.cz/FEL/ReadCustomerDetails" name="ReadCustomerDetails" bindingOperationName="ReadCustomerDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7b5e7ba6-8e5a-4fba-b5bc-281838c85daf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadAllCustomers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="bedb54a7-0ae0-4f8c-8e32-865853dd67ea" isOneWay="false" action="http://www.cvut.cz/FEL/ReadCustomerDetails" name="ReadCustomerDetails" bindingOperationName="ReadCustomerDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7b5e7ba6-8e5a-4fba-b5bc-281838c85daf" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockCustomerDatabaseSOAP</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
    <soapenv:Header/>
    <soapenv:Body>
       <fel:ReadCustomerDetails>
          <id>?</id>
       </fel:ReadCustomerDetails>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadCustomerDetails"/></con:call></con:operation></con:interface><con:testSuite id="0302252f-7e4c-4c34-8b57-fa41afbe67bc" name="CustomerDatabaseSOAP TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f3a3fb7d-3345-4a69-98c9-608d801d980b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreateCustomerChangeOrder TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="84c613e9-5a30-412a-a2a4-54403d79ef18" name="CreateCustomerChangeOrder"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomerDatabaseSOAP</con:interface><con:operation>CreateCustomerChangeOrder</con:operation><con:request name="CreateCustomerChangeOrder" id="10ea7c14-9f77-4a74-81dc-0b31caaceafe"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.cvut.cz/FEL/ReadCustomerDetails"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="0302252f-7e4c-4c34-8b57-fa41afbe67bc" name="CustomerDatabaseSOAP TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f3a3fb7d-3345-4a69-98c9-608d801d980b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreateCustomerChangeOrder TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="84c613e9-5a30-412a-a2a4-54403d79ef18" name="CreateCustomerChangeOrder"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomerDatabaseSOAP</con:interface><con:operation>CreateCustomerChangeOrder</con:operation><con:request name="CreateCustomerChangeOrder" id="10ea7c14-9f77-4a74-81dc-0b31caaceafe"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
    <soapenv:Header/>
    <soapenv:Body>
       <fel:CreateCustomerChangeOrder>
@@ -262,7 +262,7 @@
          <id>?</id>
       </fel:ReadCustomerDetails>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.cvut.cz/FEL/ReadCustomerDetails"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="1074d108-342c-49cc-9a95-c9279932405e" port="8088" path="/mockCustomerDatabaseSOAP" name="CustomerDatabaseSOAP MockService" host="" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CreateCustomerChangeOrder" id="1b1bc10c-6251-4963-a02a-2df28ee0fe01" interface="CustomerDatabaseSOAP" operation="CreateCustomerChangeOrder"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="dc42cd76-6d9a-4b0d-9d0e-c8a7912796f8" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.cvut.cz/FEL/ReadCustomerDetails"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="1074d108-342c-49cc-9a95-c9279932405e" port="8088" path="/mockCustomerDatabaseSOAP" name="CustomerDatabaseSOAP MockService" host="Filips-MacBook-Pro.local" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CreateCustomerChangeOrder" id="1b1bc10c-6251-4963-a02a-2df28ee0fe01" interface="CustomerDatabaseSOAP" operation="CreateCustomerChangeOrder"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="dc42cd76-6d9a-4b0d-9d0e-c8a7912796f8" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fel="http://www.cvut.cz/FEL/">
    <soapenv:Header/>
    <soapenv:Body>
       <fel:CreateCustomerChangeOrderResponse1>?</fel:CreateCustomerChangeOrderResponse1>
@@ -298,6 +298,28 @@
             <!--1 to 5 repetitions:-->
             <surname>Doe</surname>
             <!--1 to 3 repetitions:-->
+            <address>
+               <streetName>Ječná</streetName>
+               <streetNum>1</streetNum>
+               <postalCode>11000</postalCode>
+               <!--Optional:-->
+               <cityPart></cityPart>
+               <city>Praha</city>
+               <!--Optional:-->
+               <county>?</county>
+               <country>Česká republika</country>
+            </address>
+            <address>
+               <streetName>Ječná</streetName>
+               <streetNum>1</streetNum>
+               <postalCode>11000</postalCode>
+               <!--Optional:-->
+               <cityPart></cityPart>
+               <city>Praha</city>
+               <!--Optional:-->
+               <county>?</county>
+               <country>Česká republika</country>
+            </address>
             <address>
                <streetName>Ječná</streetName>
                <streetNum>1</streetNum>
