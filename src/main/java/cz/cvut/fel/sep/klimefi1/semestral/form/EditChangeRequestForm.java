@@ -6,11 +6,12 @@ import cz.cvut.fel.sep.klimefi1.semestral.entity.ChangeRequest;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class EditChangeRequestForm {
 
-    @NotEmpty
+    @NotNull
     @Min(1)
     private Long clientId;
 
